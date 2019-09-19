@@ -42,3 +42,6 @@ transport/.factorypath
 /.apt_generated/
 /.apt_generated_tests/
 .factorypath
+
+.attach*
+*/.attach*

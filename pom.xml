@@ -27,15 +27,36 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- chronicle-map off-heap and high performance queue framework -->
 		<dependency>
 			<groupId>net.openhft</groupId>
 			<artifactId>chronicle-queue</artifactId>
-			<version>5.17.15</version>
+			<version>5.17.22</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<!-- exclusion jna-platform version 4.2.1 -->
+				<!-- but must import latest version jna-platform -->
+				<exclusion>
+					<groupId>net.java.dev.jna</groupId>
+					<artifactId>jna-platform</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.26</version>
+			<version>1.7.28</version>
 		</dependency>
 	</dependencies>
 

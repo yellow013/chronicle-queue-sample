@@ -1,5 +1,7 @@
 package net.openhft.chronicle.queue.simple.input;
 
+import java.time.LocalDate;
+
 import net.openhft.chronicle.core.Jvm;
 import net.openhft.chronicle.queue.ExcerptTailer;
 import net.openhft.chronicle.queue.impl.single.SingleChronicleQueue;
@@ -10,7 +12,7 @@ import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
  */
 public class OutputMain {
     public static void main(String[] args) {
-        String path = "queue";
+        String path = "backup-" + LocalDate.now();
         SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).build();
         ExcerptTailer tailer = queue.createTailer();
 
