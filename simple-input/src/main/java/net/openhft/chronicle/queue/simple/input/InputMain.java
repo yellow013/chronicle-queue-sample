@@ -1,8 +1,10 @@
 package net.openhft.chronicle.queue.simple.input;
 
-import java.util.Scanner;
+import java.time.LocalTime;
 
+import net.openhft.chronicle.core.Jvm;
 import net.openhft.chronicle.queue.ExcerptAppender;
+import net.openhft.chronicle.queue.RollCycles;
 import net.openhft.chronicle.queue.impl.single.SingleChronicleQueue;
 import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
 
@@ -11,20 +13,30 @@ import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
  */
 public class InputMain {
 
+//	public static void main(String[] args) {
+//		String path = "backup-msg";
+//		SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).build();
+//		ExcerptAppender appender = queue.acquireAppender();
+//		try (Scanner read = new Scanner(System.in)) {
+//			while (true) {
+//				System.out.println("type something");
+//				String line = read.nextLine();
+//				if (line.isEmpty())
+//					break;
+//				appender.writeText(line);
+//			}
+//		}
+//		System.out.println("... bye.");
+//	}
+
 	public static void main(String[] args) {
 		String path = "backup-msg";
-		SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).build();
+		SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).rollCycle(RollCycles.MINUTELY).build();
 		ExcerptAppender appender = queue.acquireAppender();
-		try (Scanner read = new Scanner(System.in)) {
-			while (true) {
-				System.out.println("type something");
-				String line = read.nextLine();
-				if (line.isEmpty())
-					break;
-				appender.writeText(line);
-			}
+		while (true) {
+			appender.writeText(LocalTime.now().toString());
+			Jvm.pause(1000);
 		}
-		System.out.println("... bye.");
 	}
 
 }
