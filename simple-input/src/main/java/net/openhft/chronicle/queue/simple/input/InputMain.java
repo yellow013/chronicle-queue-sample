@@ -1,6 +1,7 @@
 package net.openhft.chronicle.queue.simple.input;
 
-import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 import net.openhft.chronicle.core.Jvm;
 import net.openhft.chronicle.queue.ExcerptAppender;
@@ -34,8 +35,13 @@ public class InputMain {
 		SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).rollCycle(RollCycles.MINUTELY).build();
 		ExcerptAppender appender = queue.acquireAppender();
 		while (true) {
-			appender.writeText(LocalTime.now().toString());
-			Jvm.pause(1000);
+			ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+			appender.writeText(now.toString());
+			System.out.println(now);
+			System.out.println(now.toLocalTime().toSecondOfDay() / 60);
+			System.out.println(queue.cycle());
+			System.out.println(now.toEpochSecond() / 60);
+			Jvm.pause(10000);
 		}
 	}
 
