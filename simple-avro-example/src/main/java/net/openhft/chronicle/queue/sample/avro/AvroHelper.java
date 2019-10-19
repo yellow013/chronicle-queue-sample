@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.openhft.chronicle.queue.simple.avro;
+package net.openhft.chronicle.queue.sample.avro;
 
 import net.openhft.chronicle.core.Jvm;
 import org.apache.avro.Schema;

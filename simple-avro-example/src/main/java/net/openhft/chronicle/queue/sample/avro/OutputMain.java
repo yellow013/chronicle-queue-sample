@@ -1,4 +1,4 @@
-package net.openhft.chronicle.queue.simple.avro;
+package net.openhft.chronicle.queue.sample.avro;
 
 import net.openhft.chronicle.queue.ExcerptTailer;
 import net.openhft.chronicle.queue.impl.single.SingleChronicleQueue;
