@@ -15,7 +15,6 @@ public class OutputMain {
         String path = "queue";
         SingleChronicleQueue queue = SingleChronicleQueueBuilder.binary(path).build();
         ExcerptTailer tailer = queue.createTailer();
-
         while (true) {
             try (DocumentContext dc = tailer.readingDocument()) {
                 if (dc.wire() == null)
